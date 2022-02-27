@@ -1,5 +1,7 @@
 #### makeCacheMatrix ####
-
+# this function takes a matrix x and caches its inverse and returns a list of its functions
+# inverse inside is the variable name for the matrix inverse
+# at the start of the function, the inverse variable is cleared, essentially clearing the cache
 makeCacheMatrix <- function(x = matrix()) {
   # Cache inverse of given matrix
   inverse <- NULL
@@ -21,7 +23,9 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 #### cacheSolve ####
-
+# this function computes for the matrix inverse
+# however, if the function sees that the calculation has already been done (directly before), it will simply
+# retrieve the cache
 cacheSolve <- function(x, ...) {
   inverse <- x$getInverse()
   
@@ -46,4 +50,4 @@ cacheSolve <- function(x, ...) {
 test1 <- matrix(sample(1:50,9),nrow=3, ncol=3, byrow=TRUE)
 test1cache <- makeCacheMatrix(test1)
 cacheSolve(test1cache)
-cacheSolve(test1cache)
+cacheSolve(test1cache) # done to show that the cache works
